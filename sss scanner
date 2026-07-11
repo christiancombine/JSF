@@ -3,7 +3,7 @@
 task.spawn(function()
 
     
-    local header = "--[[ YSS V1 x Project Syn Public Server Scripts Scanner - https://discord.gg/4KYxV25nqu ]]"
+    local header = "--[[ YSS V1 x Project Epimetheus Public Server Scripts Scanner - https://discord.gg/4KYxV25nqu ]]"
     
     local allowed_roots = {
         server_storage = true,
