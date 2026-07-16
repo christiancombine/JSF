@@ -1,10 +1,11 @@
 -- originally by alurion, edited by project syn team 
 -- Optimized by joyjak.st on discord
--- Version 2 
+-- NOT THE ALURION VERSION!
+
 task.spawn(function()
 
     
-    local header = "--[[ joyjak's ServerScript Finder (YSS Fork) ]]"
+    local header = "--[[ joyjak's ServerScript Finder Join https://discord.gg/uqdpBat7ns For More! ]]"
     
     local allowed_roots = {
         server_storage = true,
@@ -222,7 +223,7 @@ end
     if replicated then
         scan_container(replicated)
     end
-    -- Possible Scanning of other shit like corepackages     
+    -- Possible Scanning of other shit like cro    
     gui_log("Reconstruction Scan Complete √.")
 
 end)
