@@ -1,4 +1,4 @@
-# The Epimetheus Project - Public version
+# Joyjak's ServerScript Finder - Public version
 
 ## Overview
 
