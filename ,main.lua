@@ -1,9 +1,11 @@
--- originally by alurion, edited by project syn team .gg/4KYxV25nqu
+-- originally by alurion, edited by project syn team 
+-- Optimized by joyjak.st on discord
+-- NOT THE ALURION VERSION!
 
 task.spawn(function()
 
     
-    local header = "--[[ YSS V1 x Project Epimetheus Public Server Scripts Scanner - https://discord.gg/4KYxV25nqu ]]"
+    local header = "--[[ joyjak's ServerScript Finder (YSS Fork) Join For more https://discord.gg/MDKjs7gRVN ]]"
     
     local allowed_roots = {
         server_storage = true,
@@ -14,7 +16,7 @@ task.spawn(function()
     
     local function dbg_log(...)
         if debug_mode then
-            print("[YSS DEBUG]:", ...)
+            print("[JSF DEBUG]:", ...)
         end
     end
     
@@ -87,7 +89,7 @@ task.spawn(function()
     local log_container = create_gui()
     
     local function gui_log(text)
-        print("[YSS SCANNER 1]: " .. text)
+        print("[JSF 1]: " .. text)
     
         local label = Instance.new("TextLabel")
         label.Size = UDim2.new(1, -10, 0, 20)
@@ -186,7 +188,7 @@ task.spawn(function()
         end
     end
     
-    gui_log("YSS Reconstruction Scan Starting...")
+    gui_log("JSF Reconstruction Scan Starting...")
     
     local function scan_container(container)
         for _, obj in ipairs(container:GetDescendants()) do
@@ -194,8 +196,8 @@ task.spawn(function()
                 local success, result = pcall(function()
                     return decompile(obj)
                 end)
-    
-                task.wait(2)
+                print("[JSF] Trying Remote Name" obj)
+                task.wait(0.15)
     
                 if success and type(result) == "string" then
                     scan_source(result, obj:GetFullName())
@@ -216,4 +218,5 @@ task.spawn(function()
     end
     
     gui_log("Reconstruction Scan Complete √.")
+
 end)
