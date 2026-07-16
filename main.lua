@@ -1,11 +1,10 @@
 -- originally by alurion, edited by project syn team 
 -- Optimized by joyjak.st on discord
--- NOT THE ALURION VERSION!
-
+-- Version 2 
 task.spawn(function()
 
     
-    local header = "--[[ joyjak's ServerScript Finder (YSS Fork) Join For more https://discord.gg/MDKjs7gRVN ]]"
+    local header = "--[[ joyjak's ServerScript Finder (YSS Fork) ]]"
     
     local allowed_roots = {
         server_storage = true,
@@ -190,33 +189,40 @@ task.spawn(function()
     
     gui_log("JSF Reconstruction Scan Starting...")
     
-    local function scan_container(container)
-        for _, obj in ipairs(container:GetDescendants()) do
-            if obj:IsA("Script") or obj:IsA("LocalScript") or obj:IsA("ModuleScript") then
+local function scan_container(container)
+    local active = 0
+
+    for _, obj in ipairs(container:GetDescendants()) do
+        if obj:IsA("Script") or obj:IsA("LocalScript") or obj:IsA("ModuleScript") then
+            while active >= 6 do
+                task.wait()
+            end
+
+            active += 1
+
+            task.spawn(function()
                 local success, result = pcall(function()
                     return decompile(obj)
                 end)
-                print("[JSF] Trying Remote Name" obj)
+
+                print("[JSF] Trying Remote Name:", obj:GetFullName())
                 task.wait(0.15)
-    
+
                 if success and type(result) == "string" then
                     scan_source(result, obj:GetFullName())
                 end
-            end
+
+                active -= 1
+            end)
         end
     end
+end
     
     local replicated = game:FindFirstChild("ReplicatedStorage")
     if replicated then
         scan_container(replicated)
     end
-    
-    for _, obj in ipairs(game:GetChildren()) do
-        if obj.Name ~= "ReplicatedStorage" then
-            scan_container(obj)
-        end
-    end
-    
+    -- Possible Scanning of other shit like corepackages     
     gui_log("Reconstruction Scan Complete √.")
 
 end)
